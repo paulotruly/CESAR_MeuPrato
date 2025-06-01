@@ -1,19 +1,3 @@
-# Cardápio
-
-# Função - OK
-# Tratamento de erros e execeções - OK
-# CRUD - OK
-# Estrutura de dados
-# Manipulação de arquivos
-
-# Cardápio
-
-# Função - OK
-# Tratamento de erros e exceções - OK
-# CRUD - OK
-# Estrutura de dados
-# Manipulação de arquivos
-
 from selecionar_prato import selecionar_prato
 
 def mostrar_pedidos(pedidos):
@@ -33,7 +17,7 @@ def salvar_pedido_txt(pedidos, nome_arquivo="pedido_final.txt"):
             for i, pedido in enumerate(pedidos, 1):
                 f.write(f"{i}. {pedido}\n")
         f.write("\nObrigado pelo pedido! Volte sempre!\n")
-
+        
 def main():
     pedidos = []
 
@@ -50,11 +34,15 @@ def main():
         if escolha == '1':
             prato = selecionar_prato()
             if prato:
-                pedidos.append(prato)
-                print(f"Pedido '{prato}' adicionado com sucesso!")
+                confirmacao = input(f"Você escolheu: '{prato}'. Deseja confirmar o pedido? (s/n): ").strip().lower()
+                if confirmacao == 's':
+                    pedidos.append(prato)
+                    print(f"Pedido '{prato}' adicionado com sucesso!")
+                else:
+                    print("Pedido cancelado pelo cliente.")
             else:
                 print("Nenhum prato selecionado, nada foi adicionado.")
-        
+
         elif escolha == '2':
             mostrar_pedidos(pedidos)
         
